@@ -1,10 +1,10 @@
 # Nest, Mongo, Vue simple client-server app with JWT auth
 
-## Server setup
-
 ### Prerequisites
 1. You should have MongoDB installed and running
 2. You should have node and npm installed
+
+## Server setup
 
 ### Installation
 
@@ -16,7 +16,7 @@ $ cd kino-man-server
 $ npm i
 ```
 
-Create a new file `.env` and paste content from env-example into it. You can modify any field if needed
+Create a new file `.env` and paste content from env-example into it
 
 ### Running the app
 
@@ -30,3 +30,23 @@ $ npm run start
 3. GET, time/now, requires JWT auth bearer token
 
 ## Client setup
+
+### Installation
+
+```bash
+$ cd kino-man-client
+```
+
+```bash
+$ npm i
+```
+
+Create a new file `.env` and paste content from env-example into it
+
+### Running the app
+
+```bash
+$ npm run dev
+```
+
+You can also build the project and run index.html file from dist folder

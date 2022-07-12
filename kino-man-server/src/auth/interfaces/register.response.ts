@@ -1,4 +1,3 @@
 export interface RegisterResponse {
-  email: string;
-  token: string;
+  message: 'Created';
 }

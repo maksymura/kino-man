@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { UsersService } from '../users/users.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
-import { UsersService } from '../users/users.service';
-import { RegisterResponse } from './interfaces/register.response';
-import { JwtService } from '@nestjs/jwt';
 import { DecodedToken } from './interfaces/decoded.token';
+import { RegisterResponse } from './interfaces/register.response';
 
 @Injectable()
 export class AuthService {
@@ -41,24 +41,10 @@ export class AuthService {
   }
 
   async register(registerDto: RegisterDto): Promise<RegisterResponse> {
-    const { email } = registerDto;
     this.logger.log(`Received register input ${JSON.stringify(registerDto)}`);
-
-    const user = await this.userService.createUser(registerDto);
+    await this.userService.createUser(registerDto);
     this.logger.log(`Created user`);
 
-    const decodedToken: DecodedToken = {
-      userId: user.userId,
-      name: user.name,
-      email: user.email,
-    };
-
-    const token = this.jwtService.sign(decodedToken);
-    this.logger.log(`Created token`);
-
-    return {
-      email,
-      token,
-    };
+    return { message: 'Created' };
   }
 }
